@@ -1,0 +1,1869 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{palatino}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language spanish
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style swiss
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Trabajo práctico 2: A/B Testing
+\end_layout
+
+\begin_layout Author
+Ph.
+ D.
+ Saúl Calderón Ramírez 
+\begin_inset Newline newline
+\end_inset
+
+Instituto Tecnológico de Costa Rica, 
+\begin_inset Newline newline
+\end_inset
+
+Escuela de Ingeniería en Computación, Programa de Ciencias de Datos,
+\begin_inset Newline newline
+\end_inset
+
+PAttern Recongition and MAchine Learning Group (PARMA-Group)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Fecha de entrega:
+\series default
+ Domingo 6 de Noviembre
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+cambiar
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Entrega
+\series default
+: Un archivo .zip con el código fuente LaTeX o Lyx, el pdf, y un notebook
+ Jupyter, debidamente documentado, con una función definida por ejercicio.
+ A través del TEC-digital.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Modo de trabajo
+\series default
+: Grupos de 3 personas.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Estudiantes
+\series default
+: Dennis Luna, Graciela Rivera, Luis E.
+ Vargas 
+\end_layout
+
+\begin_layout Abstract
+En el presente trabajo práctico introduce el uso de A/B testing para el
+ desarrollo de sistemas de reconocimiento de patrones.
+ 
+\end_layout
+
+\begin_layout Section
+A/B Testing 
+\end_layout
+
+\begin_layout Standard
+El 
+\emph on
+A/B testing 
+\emph default
+es una práctica de uso extendido en la industria para
+\series bold
+ asesorar la toma de decisiones en el ámbito técnico basada en datos
+\series default
+ (diseño de interfaces, sistemas, modelos de aprendizaje automático).
+ El A/B testing define una 
+\series bold
+variable independiente
+\series default
+ para la cual se estudian distintas variantes: la posición de un botón en
+ una interfaz gráfica, una variante de un modelo de aprendizaje automático,
+ el uso de un motor de base de datos específico, etc., con el objetivo de
+ evaluar de forma controlada el efecto de tal variable independiente en
+ una 
+\series bold
+variable dependiente
+\series default
+: la satisfacción del usuario, la velocidad para llenar un formulario o
+ la tasa de errores al completar tal formluario, la tasa de aciertos, F1-score,
+ etc., de un modelo de aprendizaje automático.
+ 
+\end_layout
+
+\begin_layout Standard
+Luego de aplicar las distintas modificaciones a la variable independiente,
+ las cuales llamaremos 
+\series bold
+tratamientos, 
+\series default
+se realizan 
+\begin_inset Formula $N$
+\end_inset
+
+ réplicas con idénticas condiciones para los 
+\begin_inset Formula $K$
+\end_inset
+
+ tratamientos a utilizar.
+ Las 
+\begin_inset Formula $N$
+\end_inset
+
+ réplicas deben realizarse en 
+\series bold
+circunstancias totalmente controladas
+\series default
+, donde la única diferencia se da cuando se prueba un distinto tratamiento.
+ Posteriormente, se realiza un análisis estadístico de los resultados, para
+ determinar el 
+\series bold
+tratamiento ganador
+\series default
+.
+ Es usual que se fije uno o más tratamientos de control, que sirvan de referenci
+a para el tratamiento a analizar en la prueba, como se ilustra en la Figura
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Esquema-básico-de"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../../../Downloads/imgs/AB_testing.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Esquema básico de 
+\emph on
+A/B testing
+\emph default
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Esquema-básico-de"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Este sencillo esquema general de diseño experimental permite:
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Identificar puntos críticos de mejora en el sistema
+\series default
+: El A/B testing permite introducir cambios pequeños de forma gradual y
+ asesorada, al incentivar la reducción en los términos más simples las variables
+ dependientes que posiblemente afecten en mayor medida a la o las variables
+ independientes.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Priorizar modificaciones de bajo riesgo
+\series default
+: La reducción en términos simples de las variables independientes permite
+ generar baterías de pruebas A/B, en las cuales es posible priorizarlas
+ según su riesgo (el cual se puede medir en términos de la estabilidad de
+ la modificación a distintos plazos por ejemplo).
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Lograr mejoras con significancia estadística, por lo tanto, más fácilmente
+ reproducibles
+\series default
+: El uso de pruebas estadísticas para identificar al tratamiento ganador,
+ mejora la confiabilidad de los resultados y por ende, de la decisión tomada
+ a partir de ellos.
+\end_layout
+
+\begin_layout Section
+A/B Testing para sistema de reconocimiento de dígitos escritos a mano
+\end_layout
+
+\begin_layout Standard
+Para el presente trabajo práctico, su equipo de ciencias de datos se plantea
+ responder la pregunta: 
+\end_layout
+
+\begin_layout Verse
+Para un clasificador de dígitos escrito a mano basado en imágenes, cuál
+ enfoque logra la mayor tasa de aciertos, el algoritmo de Bayes con un modelo
+ de Bernoulli, o el algoritmo de Bayes con un modelo Gaussiano?
+\end_layout
+
+\begin_layout Standard
+Para responderla, su equipo utilizará el enfoque de 
+\emph on
+A/B testing
+\emph default
+.
+ En tal contexto, se define entonces las siguientes variantes de la 
+\series bold
+variable independiente
+\series default
+:
+\end_layout
+
+\begin_layout Itemize
+El tratamiento A es el algoritmo de Bayes con un modelo de Bernoulli.
+\end_layout
+
+\begin_layout Itemize
+El tratamiento B es el algoritmo de Bayes con un modelo Gaussiano.
+\end_layout
+
+\begin_layout Standard
+Como 
+\series bold
+variable dependiente se fija la tasa de aciertos
+\series default
+.
+ Para implementarla puede utilizar la libreria 
+\emph on
+sklearn, sklearn.metrics.accuracy_score
+\emph default
+.
+ El objetivo es entonces encontrar el tratamiento que logre una tasa de
+ aciertos mejor con significancia estadistica.
+ 
+\end_layout
+
+\begin_layout Standard
+Para desarrollar la comparativa entre ambos métodos, se seguirán los siguientes
+ pasos:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+(30 puntos)
+\series default
+ Implemente 30 particiones diferentes de los datos de entrenamiento provistos
+ usando 20% de los datos para prueba y el restante 80% para entrenamiento.
+ Asegúrese que las particiones sean la misma utilizada para probar ambos
+ tratamientos.
+ La partición de los datos debe realizarse de forma 
+\series bold
+estratificada respecto a las 10 clases
+\series default
+, para garantizar que todas las clases estén igualmente representadas en
+ el conjunto de datos de entrenamiento y prueba.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Documente como se utiliza la herramienta seleccionada para realizar las
+ particiones.
+\end_layout
+
+\begin_layout Enumerate
+Valide que ambos tratamientos utilizan las mismas particiones y muestre
+ la evidencia.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+(10 puntos)
+\series default
+ Ejecute las 
+\begin_inset Formula $N=30$
+\end_inset
+
+ replicas para los 
+\begin_inset Formula $K=2$
+\end_inset
+
+ tratamientos y
+\series bold
+ mida la tasa de aciertos
+\series default
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Reporte una tabla con los resultados y las siguientes estadísticas descriptivas:
+ 
+\series bold
+media, mediana, desviación estándar e inclinación.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Solución:
+\series default
+ Los resultados se muestran acontinuación para los 
+\begin_inset Formula $K=2$
+\end_inset
+
+ tratamientos donde se mide la media, mediana, desviación estándar e inclinación
+ para cada una de las 
+\begin_inset Formula $N=30$
+\end_inset
+
+ réplicas.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Para la siguiente tabla sea Tratamiento A = Modelo Gaussiano & Tratamiento
+ B = Modelo de Bernoulli.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="35" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Num.
+ Réplica
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tratamiento A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Tratamiento B
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+15
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+17
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+18
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+19
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+22
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+23
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+25
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+26
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+27
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+28
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+29
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+30
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Media
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Mediana
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Desviación Estándar
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Inclinación
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Parámetros Estadísticos para los 
+\begin_inset Formula $K=2$
+\end_inset
+
+ con 
+\begin_inset Formula $N=30$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Comente los resultados y responda las siguientes dos preguntas: Según los
+ estadísticos descriptivos calculados, cree usted que exista un tratamiento
+ con mejora significativa? Además, según tales estadísticos, usted valora
+ posible que las tasas de aciertos de ambos tratamientos sigan una 
+\series bold
+distribución normal
+\series default
+?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Solución: 
+\series default
+Además analizando los siguientes estadísticos del cuadro 1, se puede valorar
+ que las tasas de aciertos son.
+ 
+\begin_inset Quotes cld
+\end_inset
+
+
+\begin_inset Quotes crd
+\end_inset
+
+
+\begin_inset Quotes crd
+\end_inset
+
+....
+ 
+\begin_inset Quotes cld
+\end_inset
+
+
+\begin_inset Quotes crd
+\end_inset
+
+
+\begin_inset Quotes crd
+\end_inset
+
+ debido a que 
+\begin_inset Quotes cld
+\end_inset
+
+ 
+\begin_inset Quotes crd
+\end_inset
+
+
+\begin_inset Quotes crd
+\end_inset
+
+una forma de saber si ambos tratamientos sigue una distribución normal es
+ analizar si la media es igual o similar a la moda y la mediana, ya la distribuc
+ión normal es simétrica, es decir la media, moda y mediana coinciden.
+ Sin embargo, hay dos formas para valorar cualitativamente y cuantivamente
+ si los tratamientos siguen una distribución normal, por ejemplo, en cuanto
+ a valoraciones cualitativas se pueden usar histogramas, diagramas de caja,
+ así como un p- p plot, detallados en la sección 4.
+ Y en cuanto valores cuantitivas se podría utilizar la Kolmogorov-Smirnov
+ detallada en la sección 5.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+(20 puntos)
+\series default
+ Utilizando los resultados obtenidos en el punto anterior, realice las siguiente
+s 
+\series bold
+gráficas
+\series default
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Un histograma de la tasa de aciertos por cada tratamiento.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Histograma para el Tratamiento A: Modelo Gaussiano
+\series bold
+.
+
+\series default
+ 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Histograma para el Tratamiento B: Bernoulli
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Un diagrama de cajas, con una caja por tratamiento en un mismo gráfico.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diagrama de cajas para los K = Tratamientos 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Un 
+\emph on
+p-p plot 
+\emph default
+por cada tratamiento.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+p-p plot: Modelo Gaussiano 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+p-p plot: Modelo Bernoulli
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Comente los resultados y responda las siguientes dos preguntas: Según los
+ estadísticos descriptivos calculados, cree usted que exista un tratamiento
+ con mejora significativa? Además, según tales gráficos, usted valora posible
+ que las tasas de aciertos de ambos tratamientos sigan una distribución
+ normal.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+(10 puntos)
+\series default
+ Realice una prueba de Kolmogorov-Smirnov por cada tratamiento para verificar
+ si los resultados de cada tratamiento siguen una distribución Gaussiana.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+(
+\series bold
+10 puntos extra
+\series default
+) Investigue y escriba al menos 2 párrafos sobre algún otro método para
+ verificar la normalidad de una muestra y pruebela con los datos del presente
+ experimento.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+(30 puntos)
+\series default
+ De acuerdo a las valoraciones de los 3 puntos anteriores, defina si la
+ distribución de las tasas de aciertos son normales o no.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Si los resultados son normales, realice un ANOVA para determinar si existe
+ diferencia estadísticamente significativa entrea ambos tratamientos.
+ Utilice la función 
+\emph on
+scipy.stats.f_oneway
+\emph default
+.
+ Comente el uso de tal función (entradas y salidas), además de los resultados
+ obtenidos.
+\end_layout
+
+\begin_layout Enumerate
+Si los resultados no son normales, realice un test de Mann-Whitney-U para
+ determinar si existe diferencia estadísticamente significativa entrea ambos
+ tratamientos.
+ Utilice la función 
+\emph on
+scipy.stats.mannwhitneyu
+\emph default
+.
+ Comente el uso de tal función (entradas y salidas), además de los resultados
+ obtenidos.
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
