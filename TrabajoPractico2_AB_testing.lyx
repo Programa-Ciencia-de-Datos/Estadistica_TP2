@@ -460,6 +460,13 @@ Para la siguiente tabla sea Tratamiento A = Modelo Gaussiano & Tratamiento
  
 \end_layout
 
+\end_deeper
+\begin_layout Enumerate
+Nota poner que réplicas es igual al seed, es decir si la replica es 1 el
+ seed en (1) 
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
 \begin_inset Float table
 wide false
@@ -518,7 +525,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+64.17%
 \end_layout
 
 \end_inset
@@ -527,7 +534,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+81.67%
 \end_layout
 
 \end_inset
@@ -547,7 +554,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+64.17%
 \end_layout
 
 \end_inset
@@ -556,7 +563,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+75.00%
 \end_layout
 
 \end_inset
@@ -576,7 +583,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+63.33%
 \end_layout
 
 \end_inset
@@ -585,7 +592,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+80.83%
 \end_layout
 
 \end_inset
@@ -605,7 +612,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+62.50%
 \end_layout
 
 \end_inset
@@ -614,7 +621,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+75.00%
 \end_layout
 
 \end_inset
@@ -634,7 +641,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+66.67%
 \end_layout
 
 \end_inset
@@ -643,7 +650,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+80.83%
 \end_layout
 
 \end_inset
@@ -663,7 +670,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+61.67%
 \end_layout
 
 \end_inset
@@ -672,7 +679,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+75.83%
 \end_layout
 
 \end_inset
@@ -692,7 +699,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+62.50%
 \end_layout
 
 \end_inset
@@ -701,7 +708,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+68.33%
 \end_layout
 
 \end_inset
@@ -721,7 +728,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+63.33%
 \end_layout
 
 \end_inset
@@ -730,7 +737,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+73.33%
 \end_layout
 
 \end_inset
@@ -750,7 +757,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+65.00%
 \end_layout
 
 \end_inset
@@ -759,7 +766,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+79.17%
 \end_layout
 
 \end_inset
@@ -779,7 +786,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+64.17%
 \end_layout
 
 \end_inset
@@ -788,7 +795,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+82.50%
 \end_layout
 
 \end_inset
@@ -808,7 +815,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+69.17%
 \end_layout
 
 \end_inset
@@ -817,7 +824,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+75.00%
 \end_layout
 
 \end_inset
@@ -837,7 +844,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+61.67%
 \end_layout
 
 \end_inset
@@ -846,7 +853,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+79.17%
 \end_layout
 
 \end_inset
@@ -866,7 +873,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+63.33%
 \end_layout
 
 \end_inset
@@ -875,7 +882,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+81.67%
 \end_layout
 
 \end_inset
@@ -895,7 +902,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+61.67%
 \end_layout
 
 \end_inset
@@ -904,7 +911,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+78.33%
 \end_layout
 
 \end_inset
@@ -924,7 +931,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+65.83%
 \end_layout
 
 \end_inset
@@ -933,7 +940,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+82.50%
 \end_layout
 
 \end_inset
@@ -953,7 +960,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+71.67%
 \end_layout
 
 \end_inset
@@ -962,7 +969,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+85.00%
 \end_layout
 
 \end_inset
@@ -982,7 +989,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+67.50%
 \end_layout
 
 \end_inset
@@ -991,7 +998,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+81.67%
 \end_layout
 
 \end_inset
@@ -1011,7 +1018,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+68.33%
 \end_layout
 
 \end_inset
@@ -1020,7 +1027,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+80.83%
 \end_layout
 
 \end_inset
@@ -1040,7 +1047,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+69.17%
 \end_layout
 
 \end_inset
@@ -1049,7 +1056,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+80.83%
 \end_layout
 
 \end_inset
@@ -1069,7 +1076,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+65.00%
 \end_layout
 
 \end_inset
@@ -1078,7 +1085,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+75.00%
 \end_layout
 
 \end_inset
@@ -1098,7 +1105,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+66.67%
 \end_layout
 
 \end_inset
@@ -1107,7 +1114,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+78.33%
 \end_layout
 
 \end_inset
@@ -1127,7 +1134,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+67.50%
 \end_layout
 
 \end_inset
@@ -1136,7 +1143,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+80.83%
 \end_layout
 
 \end_inset
@@ -1156,7 +1163,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+65.83%
 \end_layout
 
 \end_inset
@@ -1165,7 +1172,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+77.50%
 \end_layout
 
 \end_inset
@@ -1185,7 +1192,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+65.83%
 \end_layout
 
 \end_inset
@@ -1194,7 +1201,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+77.50%
 \end_layout
 
 \end_inset
@@ -1214,7 +1221,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+60.00%
 \end_layout
 
 \end_inset
@@ -1223,7 +1230,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+78.33%
 \end_layout
 
 \end_inset
@@ -1243,7 +1250,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+64.17%
 \end_layout
 
 \end_inset
@@ -1252,7 +1259,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+79.17%
 \end_layout
 
 \end_inset
@@ -1272,7 +1279,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+65.83%
 \end_layout
 
 \end_inset
@@ -1281,7 +1288,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+77.50%
 \end_layout
 
 \end_inset
@@ -1301,7 +1308,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+68.33%
 \end_layout
 
 \end_inset
@@ -1310,7 +1317,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+77.50%
 \end_layout
 
 \end_inset
@@ -1330,7 +1337,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+64.17%
 \end_layout
 
 \end_inset
@@ -1339,7 +1346,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+80.00%
 \end_layout
 
 \end_inset
@@ -1359,7 +1366,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+68.33%
 \end_layout
 
 \end_inset
@@ -1368,7 +1375,7 @@ Tratamiento B
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+74.17%
 \end_layout
 
 \end_inset
@@ -1628,10 +1635,6 @@ Un histograma de la tasa de aciertos por cada tratamiento.
 wide false
 sideways false
 status open
-
-\begin_layout Plain Layout
-
-\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
