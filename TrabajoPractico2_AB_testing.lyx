@@ -398,12 +398,145 @@ Documente como se utiliza la herramienta seleccionada para realizar las
  particiones.
 \end_layout
 
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Solución:
+\series default
+ La estratificación de la partición de los datos se realizó con la misma
+ función de 
+\emph on
+train_test_split
+\emph default
+ de 
+\emph on
+sklearn
+\emph default
+ mostrada en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Código-utilizado-para"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, la cual recibe como parámetro 
+\emph on
+stratify=<classes_array>.
+ 
+\emph default
+Esto permite mantener la misma proporción de los datos para cada clase en
+ cada nueva partición a crear.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/stratify_code.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Código utilizado para estratificar las particiones.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Código-utilizado-para"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Enumerate
 Valide que ambos tratamientos utilizan las mismas particiones y muestre
  la evidencia.
 \end_layout
 
 \begin_deeper
+\begin_layout Standard
+
+\series bold
+Solución: 
+\series default
+Para evidenciar que las particiones usadas en ambos tratamientos tiene el
+ mismo conjunto de datos, primero se utilizó un mismo 
+\emph on
+seed
+\emph default
+ en el momento de hacer el 
+\emph on
+train_test_split 
+\emph default
+de la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Código-utilizado-para"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Esto asegura mantener el mismo resultado en cada partición durante cada
+ ejecución del código.
+ Como segundo paso, se procedió a incluir como parte del conjunto de datos
+ inicial el ID de cada imágen como una característica extra (la cual se
+ remueve a la hora de entrenar y probar cada modelo), esto permite verificar
+ que una vez hecha la partición a usar ya sea para el 80% del entrenamiento
+ del modelo o el 20% para el testing del modelo en ambos tratamientos, se
+ pueda observar como los IDs de cada imagen son los mismos a utilizar por
+ cada tratamiento, tal y como se muestra en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evidencia-de-las"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ En dicha figura, también se puede muestra el resultado de comparar ambos
+ tensores (solo con el ID de las imágenes) para cada tratamiento, retornando
+ 
+\emph on
+true
+\emph default
+ en todas las imágenes seleccionadas de cada partición.
+ 
+\end_layout
+
 \begin_layout Standard
 \begin_inset Float figure
 placement H
@@ -427,7 +560,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Evidencia de las particiones por tratamiento 
+Evidencia de las particiones por tratamiento.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evidencia-de-las"
+
+\end_inset
+
+ 
 \end_layout
 
 \end_inset
