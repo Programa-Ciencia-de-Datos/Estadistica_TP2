@@ -398,145 +398,12 @@ Documente como se utiliza la herramienta seleccionada para realizar las
  particiones.
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-
-\series bold
-Solución:
-\series default
- La estratificación de la partición de los datos se realizó con la misma
- función de 
-\emph on
-train_test_split
-\emph default
- de 
-\emph on
-sklearn
-\emph default
- mostrada en la Figura 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Código-utilizado-para"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, la cual recibe como parámetro 
-\emph on
-stratify=<classes_array>.
- 
-\emph default
-Esto permite mantener la misma proporción de los datos para cada clase en
- cada nueva partición a crear.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename images/stratify_code.png
-	lyxscale 60
-	scale 60
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Código utilizado para estratificar las particiones.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Código-utilizado-para"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
 \begin_layout Enumerate
 Valide que ambos tratamientos utilizan las mismas particiones y muestre
  la evidencia.
 \end_layout
 
 \begin_deeper
-\begin_layout Standard
-
-\series bold
-Solución: 
-\series default
-Para evidenciar que las particiones usadas en ambos tratamientos tiene el
- mismo conjunto de datos, primero se utilizó un mismo 
-\emph on
-seed
-\emph default
- en el momento de hacer el 
-\emph on
-train_test_split 
-\emph default
-de la Figura 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Código-utilizado-para"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- Esto asegura mantener el mismo resultado en cada partición durante cada
- ejecución del código.
- Como segundo paso, se procedió a incluir como parte del conjunto de datos
- inicial el ID de cada imágen como una característica extra (la cual se
- remueve a la hora de entrenar y probar cada modelo), esto permite verificar
- que una vez hecha la partición a usar ya sea para el 80% del entrenamiento
- del modelo o el 20% para el testing del modelo en ambos tratamientos, se
- pueda observar como los IDs de cada imagen son los mismos a utilizar por
- cada tratamiento, tal y como se muestra en la Figura 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Evidencia-de-las"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- En dicha figura, también se puede muestra el resultado de comparar ambos
- tensores (solo con el ID de las imágenes) para cada tratamiento, retornando
- 
-\emph on
-true
-\emph default
- en todas las imágenes seleccionadas de cada partición.
- 
-\end_layout
-
 \begin_layout Standard
 \begin_inset Float figure
 placement H
@@ -560,15 +427,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Evidencia de las particiones por tratamiento.
- 
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Evidencia-de-las"
-
-\end_inset
-
- 
+Evidencia de las particiones por tratamiento 
 \end_layout
 
 \end_inset
@@ -621,7 +480,7 @@ media, mediana, desviación estándar e inclinación.
 \series bold
 Solución:
 \series default
- Los resultados se muestran acontinuación para los 
+ Los resultados se muestran a continuación para los 
 \begin_inset Formula $K=2$
 \end_inset
 
@@ -635,20 +494,12 @@ Solución:
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-Para la siguiente tabla sea Tratamiento A = Modelo Gaussiano & Tratamiento
- B = Modelo de Bernoulli.
+Para la siguiente tabla sea tratamiento A = Modelo Gaussiano & tratamiento
+ B = Modelo de Bernoulli, donde se tiene seeds distintos para cada una de
+ las réplicas.
  
 \end_layout
 
-\end_deeper
-\begin_layout Enumerate
-Nota poner que réplicas es igual al seed, es decir si la replica es 1 el
- seed en (1) 
-\end_layout
-
-\begin_deeper
 \begin_layout Standard
 \begin_inset Float table
 wide false
@@ -1741,52 +1592,32 @@ distribución normal
 \series bold
 Solución: 
 \series default
-Además analizando los siguientes estadísticos del cuadro 1, se puede valorar
- que las tasas de aciertos son.
+Se puede observar de acuerdo a la tabla que el tratamiento B es el que tiene
+ una mayor tasa de aciertos más alta que el modelo Gaussiano, lo cual se
+ puede inferir que el modelo de Bayes Bernoulli es el de mejor rendimiento.
+ Además analizando los siguientes estadísticos del cuadro 1, se puede valorar
+ que las tasas de aciertos siguen una distribución normal debido a que una
+ forma de saber si ambos tratamientos sigue una distribución normal es analizar
+ si la media es igual o similar a la moda y la mediana, ya la distribución
+ normal es simétrica, es decir la media, moda y mediana coinciden.
+ Por ejemplo para el caso del tratamiento A: se puede observar que la media
+ y la mediana tienen una diferencia muy pequeña entre sí de 0.25 y por parte
+ del tratamiento B se tiene una diferencia mínima de 0.11.
+ También se puede ver que en cuanto a la inclinación, el tratamiento A tiene
+ una inclinación positiva lo que indica que si el sesgo es positivo la distribuc
+ión, una tendrá una cola asimétrica extendida hacia los valores positivos.
+ Por otro lado, el tratamiento B tiene una inclinación negativa, es decir,
+ un sesgo negativo indica una distribución con una cola asimétrica extendida
+ hacia los valores negativos, y esto se puede comprobar más adelante con
+ los histograma de la sección 4.
  
-\begin_inset Quotes cld
-\end_inset
+\end_layout
 
-
-\begin_inset Quotes crd
-\end_inset
-
-
-\begin_inset Quotes crd
-\end_inset
-
-....
- 
-\begin_inset Quotes cld
-\end_inset
-
-
-\begin_inset Quotes crd
-\end_inset
-
-
-\begin_inset Quotes crd
-\end_inset
-
- debido a que 
-\begin_inset Quotes cld
-\end_inset
-
- 
-\begin_inset Quotes crd
-\end_inset
-
-
-\begin_inset Quotes crd
-\end_inset
-
-una forma de saber si ambos tratamientos sigue una distribución normal es
- analizar si la media es igual o similar a la moda y la mediana, ya la distribuc
-ión normal es simétrica, es decir la media, moda y mediana coinciden.
- Sin embargo, hay dos formas para valorar cualitativamente y cuantivamente
- si los tratamientos siguen una distribución normal, por ejemplo, en cuanto
- a valoraciones cualitativas se pueden usar histogramas, diagramas de caja,
- así como un p- p plot, detallados en la sección 4.
+\begin_layout Standard
+Sin embargo, se puede valorar cualitativamente y cuantivamente si los tratamient
+os siguen una distribución normal, por ejemplo, en cuanto a valoraciones
+ cualitativas se pueden usar histogramas, diagramas de caja, así como un
+ p- p plot, detallados en la sección 4.
  Y en cuanto valores cuantitivas se podría utilizar la Kolmogorov-Smirnov
  detallada en la sección 5.
  
@@ -1809,10 +1640,22 @@ gráficas
 \begin_deeper
 \begin_layout Enumerate
 Un histograma de la tasa de aciertos por cada tratamiento.
+ 
 \end_layout
 
 \begin_deeper
-\begin_layout Enumerate
+\begin_layout Standard
+A continuación se tienen los dos histogramas para cada uno de los tratamientos
+ A : Modelo Gaussiano, y B: Modelo de Bernoulli.
+ Se puede observar que para la figura 3, para el tratamiento A se tiene
+ una inclinación positiva, lo cual se puede mostrar su asimetría en sus
+ colas, al igual que en el caso de la figura 4 para el Modelo de Bernoulli.
+ Ambos tratamientos tienen una leve inclinación ya sea positiva o negativa
+ con respecto a la media.
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
@@ -1857,7 +1700,7 @@ Histograma para el Tratamiento A: Modelo Gaussiano
 
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
