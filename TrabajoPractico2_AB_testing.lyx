@@ -403,6 +403,48 @@ Valide que ambos tratamientos utilizan las mismas particiones y muestre
  la evidencia.
 \end_layout
 
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Evidence.png
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Evidencia de las particiones por tratamiento 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Enumerate
 
@@ -1631,9 +1673,22 @@ Un histograma de la tasa de aciertos por cada tratamiento.
 \begin_deeper
 \begin_layout Enumerate
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/H_A.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1663,11 +1718,20 @@ Histograma para el Tratamiento A: Modelo Gaussiano
 
 \begin_layout Enumerate
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/H_B.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
 
 \end_layout
 
@@ -1701,9 +1765,22 @@ Un diagrama de cajas, con una caja por tratamiento en un mismo gráfico.
 \begin_deeper
 \begin_layout Enumerate
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/Box_plot.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\end_layout
 
 \begin_layout Plain Layout
 \begin_inset Caption Standard
@@ -1738,11 +1815,20 @@ por cada tratamiento.
 \begin_deeper
 \begin_layout Enumerate
 \begin_inset Float figure
+placement H
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/PP_A.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
 
 \end_layout
 
@@ -1769,11 +1855,20 @@ p-p plot: Modelo Gaussiano
 
 \begin_layout Enumerate
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename images/PP_B.png
+	lyxscale 60
+	scale 60
+
+\end_inset
+
 
 \end_layout
 
