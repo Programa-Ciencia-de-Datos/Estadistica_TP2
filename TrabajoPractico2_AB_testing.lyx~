@@ -2011,14 +2011,10 @@ El equipo de trabajo propone utilizar el método de Anderson-Darling con
  basa en los puntos de los datos.
  La prueba se basa en la comparación de la función de la distribución acumulada
  empírica de los resultados de la muestra con la distribución esperada si
- los datos fueran normales (Flores Tapia , Carlos-Flores Cevallos, Karla).
+ los datos fueran normales.
  Si la diferencia es suficientemente grande , la hipótesis nula de normalidad
  de la población es rechazada.
- La ecuación general del método descrito 
-\series bold
-[1] 
-\series default
-esta dada por 
+ La ecuación general del método descrito esta dada por 
 \begin_inset Formula 
 \[
 AD=-n-\frac{1}{n}\sum_{i=1}^{n}(2i-1)[lnF(x_{i})+ln(1-F(X_{n-i+1}))]
@@ -2026,7 +2022,7 @@ AD=-n-\frac{1}{n}\sum_{i=1}^{n}(2i-1)[lnF(x_{i})+ln(1-F(X_{n-i+1}))]
 
 \end_inset
 
- 
+
 \end_layout
 
 \begin_layout Standard
@@ -2638,20 +2634,6 @@ scipy.stats.mannwhitneyu
 .
  Comente el uso de tal función (entradas y salidas), además de los resultados
  obtenidos.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Referencias.
-\end_layout
-
-\begin_layout Standard
-[1] "PRUEBAS PARA COMPROBAR LA NORMALIDAD DE DATOS EN PROCESOS PRODUCTIVOS:
- ANDERSON-DARLING, RYAN-JOINER, SHAPIRO-WILK Y KOLMOGÓROV-SMIRNOV".
- Índice de revistas en consolidación AmeliCA.
- http://portal.amelica.org/ameli/journal/341/3412237018/html/ (accedido el
- 5 de noviembre de 2022).
 \end_layout
 
 \end_deeper
