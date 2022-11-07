@@ -240,7 +240,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../../../../Downloads/Estadistica_TP2-main 2/images/AB_testing.png
+	filename images/AB_testing.png
 	lyxscale 60
 	scale 60
 
@@ -444,7 +444,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../../../../Downloads/Estadistica_TP2-main 2/images/stratify_code.png
+	filename images/stratify_code.png
 	lyxscale 50
 	scale 50
 
@@ -548,7 +548,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../../../../Downloads/Estadistica_TP2-main 2/images/Evidence.png
+	filename images/Evidence.png
 	lyxscale 40
 	scale 40
 
@@ -1844,7 +1844,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../../../../Downloads/Estadistica_TP2-main 2/images/H_B.png
+	filename images/H_B.png
 	lyxscale 60
 	scale 60
 
@@ -1898,7 +1898,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../../../../Downloads/Estadistica_TP2-main 2/images/Box_plot.png
+	filename images/Box_plot.png
 	lyxscale 60
 	scale 60
 
@@ -1948,7 +1948,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../../../../Downloads/Estadistica_TP2-main 2/images/PP_A.png
+	filename images/PP_A.png
 	lyxscale 60
 	scale 60
 
@@ -1988,7 +1988,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename ../../../../Downloads/Estadistica_TP2-main 2/images/PP_B.png
+	filename images/PP_B.png
 	lyxscale 60
 	scale 60
 
@@ -2165,7 +2165,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename /Users/gracerivera/Downloads/Estadistica_TP2-master 2/images/kms.png
+	filename images/kms.png
 	lyxscale 50
 	scale 50
 
@@ -2268,7 +2268,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename /Users/gracerivera/Downloads/Estadistica_TP2-master 2/images/anderson-darling.png
+	filename images/anderson-darling.png
 	lyxscale 50
 	scale 50
 
@@ -2811,7 +2811,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename /Users/gracerivera/Downloads/Estadistica_TP2-master/images/Anova.png
+	filename images/Anova.png
 	lyxscale 50
 	scale 50
 
