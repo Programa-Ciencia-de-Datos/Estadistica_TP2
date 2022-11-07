@@ -232,6 +232,7 @@ noprefix "false"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -239,8 +240,9 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename images/AB_testing.png
-	scale 50
+	filename ../../../../Downloads/Estadistica_TP2-main 2/images/AB_testing.png
+	lyxscale 60
+	scale 60
 
 \end_inset
 
@@ -346,11 +348,11 @@ variable independiente
 \end_layout
 
 \begin_layout Itemize
-El tratamiento A es el algoritmo de Bayes con un modelo de Bernoulli.
+El tratamiento B es el algoritmo de Bayes con un modelo de Bernoulli.
 \end_layout
 
 \begin_layout Itemize
-El tratamiento B es el algoritmo de Bayes con un modelo Gaussiano.
+El tratamiento A es el algoritmo de Bayes con un modelo Gaussiano.
 \end_layout
 
 \begin_layout Standard
@@ -398,12 +400,40 @@ Documente como se utiliza la herramienta seleccionada para realizar las
  particiones.
 \end_layout
 
-\begin_layout Enumerate
-Valide que ambos tratamientos utilizan las mismas particiones y muestre
- la evidencia.
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Solución:
+\series default
+ La estratificación de la partición de los datos se realizó con la misma
+ función de 
+\emph on
+train_test_split
+\emph default
+ de 
+\emph on
+sklearn
+\emph default
+ mostrada en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Código-utilizado-para"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, la cual recibe como parámetro 
+\emph on
+stratify=<classes_array>.
+ 
+\emph default
+Esto permite mantener la misma proporción de los datos para cada clase en
+ cada nueva partición a crear.
 \end_layout
 
-\begin_deeper
 \begin_layout Standard
 \begin_inset Float figure
 placement H
@@ -414,7 +444,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename images/Evidence.png
+	filename ../../../../Downloads/Estadistica_TP2-main 2/images/stratify_code.png
 	lyxscale 50
 	scale 50
 
@@ -427,7 +457,15 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Evidencia de las particiones por tratamiento 
+Código utilizado para estratificar las particiones.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Código-utilizado-para"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -435,7 +473,107 @@ Evidencia de las particiones por tratamiento
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Valide que ambos tratamientos utilizan las mismas particiones y muestre
+ la evidencia.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Solución: 
+\series default
+Para evidenciar que las particiones usadas en ambos tratamientos tiene el
+ mismo conjunto de datos, se utilizó un mismo 
+\emph on
+seed
+\emph default
+ en el momento de hacer el 
+\emph on
+train_test_split 
+\emph default
+de la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Código-utilizado-para"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Esto asegura mantener el mismo resultado en cada partición durante cada
+ ejecución del código.
+ También, se procedió a incluir como parte del conjunto de datos inicial
+ el ID de cada imágen como una característica extra (la cual se remueve
+ a la hora de entrenar y probar cada modelo), esto permite verificar que
+ una vez hecha la partición a usar, ya sea para el 80% del entrenamiento
+ del modelo o el 20% para el testing del modelo en ambos tratamientos, se
+ puede observar como los IDs de cada imagen son los mismos a utilizar por
+ cada tratamiento, tal y como se muestra en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evidencia-de-las"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ En dicha figura, también se muestra el resultado de comparar ambos tensores
+ (solo con el ID de las imágenes) para cada tratamiento, retornando 
+\emph on
+true
+\emph default
+ en la comparación de todas las imágenes seleccionadas de cada partición.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
 \begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ../../../../Downloads/Estadistica_TP2-main 2/images/Evidence.png
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Evidencia de las particiones por tratamiento.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evidencia-de-las"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
@@ -494,7 +632,7 @@ Solución:
 \end_layout
 
 \begin_layout Standard
-Para la siguiente tabla sea tratamiento A = Modelo Gaussiano & tratamiento
+Para la siguiente tabla sea tratamiento A = Modelo Gaussiano y tratamiento
  B = Modelo de Bernoulli, donde se tiene seeds distintos para cada una de
  las réplicas.
  
@@ -1593,31 +1731,31 @@ distribución normal
 Solución: 
 \series default
 Se puede observar de acuerdo a la tabla que el tratamiento B es el que tiene
- una mayor tasa de aciertos más alta que el modelo Gaussiano, lo cual se
- puede inferir que el modelo de Bayes Bernoulli es el de mejor rendimiento.
- Además analizando los siguientes estadísticos del cuadro 1, se puede valorar
- que las tasas de aciertos siguen una distribución normal debido a que una
- forma de saber si ambos tratamientos sigue una distribución normal es analizar
+ una mayor tasa de aciertos en comparación con el modelo Gaussiano, lo cual
+ se puede inferir que el modelo de Bayes Bernoulli es el de mejor rendimiento.
+ Además analizando los siguientes estadísticos del cuadro 1, pareciera que
+ las tasas de aciertos siguen una distribución normal debido a que una forma
+ de saber si ambos tratamientos sigue una distribución normal es analizando
  si la media es igual o similar a la moda y la mediana, ya que la distribución
  normal es simétrica, es decir la media, moda y mediana coinciden.
- Por ejemplo para el caso del tratamiento A: se puede observar que la media
+ Por ejemplo, para el caso del tratamiento A: se puede observar que la media
  y la mediana tienen una diferencia muy pequeña entre sí de 0.25 y por parte
  del tratamiento B se tiene una diferencia mínima de 0.11.
  También se puede ver que en cuanto a la inclinación, el tratamiento A tiene
- una inclinación positiva lo que indica que si el sesgo es positivo la distribuc
-ión, una tendrá una cola asimétrica extendida hacia los valores positivos.
+ una inclinación positiva lo que indica que si el sesgo es positivo se tendrá
+ una cola asimétrica extendida hacia los valores positivos.
  Por otro lado, el tratamiento B tiene una inclinación negativa, es decir,
  un sesgo negativo indica una distribución con una cola asimétrica extendida
  hacia los valores negativos, y esto se puede comprobar más adelante con
  los histogramas de la sección 4.
- 
 \end_layout
 
 \begin_layout Standard
-Sin embargo, se puede valorar cualitativamente y cuantivamente si los tratamient
-os siguen una distribución normal, por ejemplo, en cuanto a valoraciones
- cualitativas se pueden usar histogramas, diagramas de caja, así como un
- p- p plot, detallados en la sección 4.
+Sin embargo, no se puede concluir que sea una distribución normal, ya que
+ se necesitan más valoraciones que sustenten la normalidad de estos datos,
+ mediante pruebas cualitativas y cuantitativas adicionales.
+ Por ejemplo, en cuanto a valoraciones cualitativas se pueden usar histogramas,
+ diagramas de caja, así como un p- p plot, detallados en la sección 4.
  Y en cuanto valores cuantitivas se podría utilizar la Kolmogorov-Smirnov
  detallada en la sección 5.
  
@@ -1644,17 +1782,6 @@ Un histograma de la tasa de aciertos por cada tratamiento.
 \end_layout
 
 \begin_deeper
-\begin_layout Standard
-A continuación se tienen los dos histogramas para cada uno de los tratamientos
- A : Modelo Gaussiano, y B: Modelo de Bernoulli.
- Se puede observar que para la figura 3, para el tratamiento A se tiene
- una inclinación positiva, lo cual se puede mostrar su asimetría en sus
- colas, al igual que en el caso de la figura 4 para el Modelo de Bernoulli.
- Ambos tratamientos tienen una leve inclinación ya sea positiva o negativa
- con respecto a la media.
- 
-\end_layout
-
 \begin_layout Standard
 \begin_inset Float figure
 placement H
@@ -1684,6 +1811,13 @@ Histograma para el Tratamiento A: Modelo Gaussiano
 
 \series default
  
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Histograma-A"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1710,7 +1844,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename images/H_B.png
+	filename ../../../../Downloads/Estadistica_TP2-main 2/images/H_B.png
 	lyxscale 60
 	scale 60
 
@@ -1723,7 +1857,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Histograma para el Tratamiento B: Bernoulli
+Histograma para el Tratamiento B: Bernoulli.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Histograma_B"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1742,12 +1883,12 @@ Histograma para el Tratamiento B: Bernoulli
 
 \end_deeper
 \begin_layout Enumerate
-Un diagrama de cajas, con una caja por tratamiento en un mismo gráfico:
+Un diagrama de cajas, con una caja por tratamiento en un mismo gráfico.
  
 \end_layout
 
 \begin_deeper
-\begin_layout Enumerate
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
@@ -1757,7 +1898,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename images/Box_plot.png
+	filename ../../../../Downloads/Estadistica_TP2-main 2/images/Box_plot.png
 	lyxscale 60
 	scale 60
 
@@ -1797,7 +1938,7 @@ por cada tratamiento.
 \end_layout
 
 \begin_deeper
-\begin_layout Enumerate
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
@@ -1807,7 +1948,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename images/PP_A.png
+	filename ../../../../Downloads/Estadistica_TP2-main 2/images/PP_A.png
 	lyxscale 60
 	scale 60
 
@@ -1837,7 +1978,7 @@ p-p plot: Modelo Gaussiano
 
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Standard
 \begin_inset Float figure
 placement H
 wide false
@@ -1847,7 +1988,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename images/PP_B.png
+	filename ../../../../Downloads/Estadistica_TP2-main 2/images/PP_B.png
 	lyxscale 60
 	scale 60
 
@@ -1877,7 +2018,8 @@ p-p plot: Modelo Bernoulli
 
 \end_layout
 
-\begin_layout Standard
+\end_deeper
+\begin_layout Enumerate
 Comente los resultados y responda las siguientes dos preguntas: Según los
  estadísticos descriptivos calculados, cree usted que exista un tratamiento
  con mejora significativa? Además, según tales gráficos, usted valora posible
@@ -1886,23 +2028,70 @@ Comente los resultados y responda las siguientes dos preguntas: Según los
  
 \end_layout
 
+\begin_deeper
 \begin_layout Standard
-Solución: Según los gráficos, se puede valorar que los datos de las tasas
- de ciertos siguen una distribución normal.
- ya que: 
+
+\series bold
+Solución: 
+\series default
+Según los gráficos, se puede valorar que los datos de las tasas de ciertos
+ siguen una distribución normal, de acuerdo a los siguientes puntos: 
 \end_layout
 
 \begin_layout Standard
 1.
  De acuerdo al análisis de los gráficos de histograma por tratamiento, se
- tienen los dos histogramas para cada uno de los tratamientos A : Modelo
- Gaussiano, y B: Modelo de Bernoulli.
- Se puede observar donde ambos tienen una para la figura .
- En el caso del tratamiento A se tiene una inclinación positiva, lo cual
- se puede mostrar su asimetría en sus colas, al igual que en el caso de
- la figura 4 para el Modelo de Bernoulli.
+ puede observar que para la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Histograma-A"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, que corresponde al tratamiento A se tiene una inclinación positiva, lo
+ cual indica que es asimétrica en sus colas , al igual que en el caso de
+ la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Histograma_B"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ para el Modelo de Bernoulli.
  Ambos tratamientos tienen una leve inclinación ya sea positiva o negativa
  con respecto a la media.
+ 
+\end_layout
+
+\begin_layout Standard
+2.
+ De acuerdo al análisis del boxplot para ambos tratamientos, se puede observar
+ que ambos tratamientos tienen una ligera inclinación, lo cual coinciden
+ con lo discutido anteriomente en los histogramas.
+ Adicionalmente es evidente que el tratamiento B tiene mejor tasa de aciertos.
+ 
+\end_layout
+
+\begin_layout Standard
+3.
+ De acuerdo al análisis del p-plot para ambos tratamientos, es muy evidente
+ que las observaciones tienen una tendencia lineal y se encuentran cercanos
+ a la distribución normal (línea de color roja)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Conclusión: 
+\series default
+Tras valorar cualitativamente, se puede concluir que ambos tratamientos
+ tienen tasas de aciertos que siguen una distribución normal.
  
 \end_layout
 
@@ -1919,9 +2108,13 @@ Solución: Según los gráficos, se puede valorar que los datos de las tasas
 
 \begin_deeper
 \begin_layout Standard
-Solución: Con base a los resultados obtenidos, la prueba Kolmorov-Smirnov
- muestra que tanto, para el Tratamiento A como para el Tratamiento B siguen
- una distribución normal dado a que la significancia 
+
+\series bold
+Solución:
+\series default
+ Con base a los resultados obtenidos, la prueba Kolmorov-Smirnov muestra
+ que tanto, para el Tratamiento A como para el Tratamiento B siguen una
+ distribución normal dado a que la significancia 
 \begin_inset Formula $\alpha<pvalue$
 \end_inset
 
@@ -1942,8 +2135,18 @@ Solución: Con base a los resultados obtenidos, la prueba Kolmorov-Smirnov
 \end_layout
 
 \begin_layout Standard
-En la figura 8 se puede apreciar los resultados obtenidos con el apoyo de
- la biblioteca 
+En la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Prueba-Kolmogorov-Smirnov-para"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ se puede apreciar los resultados obtenidos con el apoyo de la biblioteca
+ 
 \shape italic
 scypy
 \shape default
@@ -1962,7 +2165,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename images/kms.png
+	filename /Users/gracerivera/Downloads/Estadistica_TP2-master 2/images/kms.png
+	lyxscale 50
 	scale 50
 
 \end_inset
@@ -1971,11 +2175,17 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\align center
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Prueba Kolmogorov-Smirnov para el Tratamiento A y Tratamiento B
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Prueba-Kolmogorov-Smirnov-para"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1992,7 +2202,7 @@ Prueba Kolmogorov-Smirnov para el Tratamiento A y Tratamiento B
 
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Standard
 (
 \series bold
 10 puntos extra
@@ -2002,7 +2212,6 @@ Prueba Kolmogorov-Smirnov para el Tratamiento A y Tratamiento B
  experimento.
 \end_layout
 
-\begin_deeper
 \begin_layout Standard
 El equipo de trabajo propone utilizar el método de Anderson-Darling con
  el fin de validar los tratamientos utilizados.
@@ -2018,7 +2227,7 @@ El equipo de trabajo propone utilizar el método de Anderson-Darling con
 \series bold
 [1] 
 \series default
-esta dada por 
+esta dada por :
 \begin_inset Formula 
 \[
 AD=-n-\frac{1}{n}\sum_{i=1}^{n}(2i-1)[lnF(x_{i})+ln(1-F(X_{n-i+1}))]
@@ -2030,7 +2239,7 @@ AD=-n-\frac{1}{n}\sum_{i=1}^{n}(2i-1)[lnF(x_{i})+ln(1-F(X_{n-i+1}))]
 \end_layout
 
 \begin_layout Standard
-En el contexto de la implementación con base a los datos utilizado para
+En el contexto de la implementación, con base a los datos utilizado para
  este experimento, la biblioteca de 
 \shape italic
 scypy
@@ -2039,9 +2248,9 @@ scypy
 \shape italic
 stats.anderson
 \shape default
- el cual permite definir cual es la distribución que se desea probar dada
+ el cual permite definir cuál es la distribución que se desea probar dada
  una determinada población (Tratamiento A y B).
- Para la figura 9 se tiene los resultados obtenidos donde la salida muestra
+ Para la figura 10 se tiene los resultados obtenidos donde la salida muestra
  el estadístico de prueba (
 \shape italic
 Valor Statistic
@@ -2049,9 +2258,9 @@ Valor Statistic
 ) los valores críticos y la significancia.
 \end_layout
 
-\end_deeper
 \begin_layout Standard
 \begin_inset Float figure
+placement H
 wide false
 sideways false
 status open
@@ -2059,7 +2268,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename images/anderson-darling.png
+	filename /Users/gracerivera/Downloads/Estadistica_TP2-master 2/images/anderson-darling.png
+	lyxscale 50
 	scale 50
 
 \end_inset
@@ -2094,7 +2304,6 @@ Se analiza los 2 tratamientos bajo los siguientes cuadros comparativos:
 
 \begin_layout Standard
 \begin_inset Float table
-placement H
 wide false
 sideways false
 status open
@@ -2163,7 +2372,7 @@ Es Significativo vs 0.269
 \begin_inset Text
 
 \begin_layout Plain Layout
-No 
+No
 \end_layout
 
 \end_inset
@@ -2296,7 +2505,7 @@ No
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Análisis comparativo AD para Tratamiento A 
+Análisis comparativo AD para Tratamiento A
 \end_layout
 
 \end_inset
@@ -2311,7 +2520,6 @@ Análisis comparativo AD para Tratamiento A
 
 \begin_layout Standard
 \begin_inset Float table
-placement H
 wide false
 sideways false
 status open
@@ -2521,10 +2729,6 @@ Análisis comparativo AD para Tratamiento B
 
 \end_layout
 
-\begin_layout Plain Layout
-
-\end_layout
-
 \end_inset
 
 
@@ -2552,7 +2756,7 @@ Al observar los resultados de la prueba, nótese que ningún valor crítico
 \end_layout
 
 \begin_deeper
-\begin_layout Enumerate
+\begin_layout Standard
 Si los resultados son normales, realice un ANOVA para determinar si existe
  diferencia estadísticamente significativa entre ambos tratamientos.
  Utilice la función 
@@ -2564,10 +2768,12 @@ scipy.stats.f_oneway
  obtenidos.
 \end_layout
 
-\begin_deeper
 \begin_layout Standard
-Solución: Como entradas se utilizan los tratamientos A y B como entradas
- de la función 
+
+\series bold
+Solución: 
+\series default
+Se utilizan los tratamientos A y B como entradas de la función 
 \emph on
 scipy.stats.f_oneway
 \emph default
@@ -2577,14 +2783,24 @@ scipy.stats.f_oneway
 \end_layout
 
 \begin_layout Standard
-Por lo tanto en la figura 10 se aprecia el resultado obtenido donde el resultado
- 
+Por lo tanto, en la figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:anova"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ se aprecia el resultado obtenido donde el resultado 
 \begin_inset Formula $pvalue<0.05$
 \end_inset
 
  indicando que las distribuciones son diferentes.
 \end_layout
 
+\end_deeper
 \begin_layout Standard
 \begin_inset Float figure
 placement H
@@ -2595,7 +2811,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename images/Anova.png
+	filename /Users/gracerivera/Downloads/Estadistica_TP2-master/images/Anova.png
+	lyxscale 50
 	scale 50
 
 \end_inset
@@ -2610,6 +2827,13 @@ status open
 Resultado después de aplicar la función 
 \emph on
 scipy.stats.f_oneway
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:anova"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2624,29 +2848,9 @@ scipy.stats.f_oneway
 \end_inset
 
 
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-Si los resultados no son normales, realice un test de Mann-Whitney-U para
- determinar si existe diferencia estadísticamente significativa entrea ambos
- tratamientos.
- Utilice la función 
-\emph on
-scipy.stats.mannwhitneyu
-\emph default
-.
- Comente el uso de tal función (entradas y salidas), además de los resultados
- obtenidos.
-\end_layout
-
-\begin_layout Standard
-
 \series bold
 Referencias.
-\end_layout
-
-\begin_layout Standard
+\series default
 [1] "PRUEBAS PARA COMPROBAR LA NORMALIDAD DE DATOS EN PROCESOS PRODUCTIVOS:
  ANDERSON-DARLING, RYAN-JOINER, SHAPIRO-WILK Y KOLMOGÓROV-SMIRNOV".
  Índice de revistas en consolidación AmeliCA.
@@ -2654,6 +2858,5 @@ Referencias.
  5 de noviembre de 2022).
 \end_layout
 
-\end_deeper
 \end_body
 \end_document
